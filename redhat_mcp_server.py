@@ -301,7 +301,7 @@ async def get_case(case_number: str) -> Dict:
     return formatted_result
 
 @mcp.prompt(name="summarize_case", description="Summarize a Red Hat support case in C.A.S.E. markdown format.")
-async def summarize_case(case_number: str) -> str:
+async def summarize_case_prompt(case_number: str) -> str:
     """
     Given a Red Hat support case number, instruct the LLM to fetch the case data and summarize it using the C.A.S.E. markdown template.
     """
@@ -333,6 +333,82 @@ Case Number: {case_number}
 - [Add any additional insights or actionable suggestions]
 
 Ensure the summary is comprehensive yet concise, providing a clear overview and actionable next steps.
+'''
+    return prompt.strip()
+
+@mcp.prompt(name="resolve_case_template", description="Red Hat Case Resolver Bot: investigation and solution workflow for a support case.")
+async def resolve_case_prompt(case_number: str) -> str:
+    """
+    Given a Red Hat support case number, instruct the LLM to follow the Red Hat Case Resolver Bot workflow and output a markdown document with the required sections and rules.
+    """
+    prompt = f'''
+## 1. Investigation Workflow
+1. **Fetch the case** –  
+   • Get the Redhat with case number   
+   • Summary and understand the current issue(s) and status
+
+2. **Keyword generation** –  
+   • Build a rich keyword list (components, CVEs, error phrases, paraphrases).  
+   • Produce at least three query variants.
+
+3. **Iterative search rounds** (cap = 3). In **each** round:
+
+   a. **Search**  
+      • Search KCS  
+      • Search Jira ticket  
+      • Search Red Hat case for simliar  historical Red Hat cases  
+      • Search Internet
+
+   b. **Retrieve & Read**  
+      • KCS Solution and Articles
+      • Jira ticket details and comments 
+      • Case history and resolution
+      • Harvest any new hyperlinks inside those bodies.
+
+   c. **Link Expansion**  
+      • For every new URL try to fetch content  
+      • Skip URLs already reviewed.
+
+   d. **Reflect**  
+      • Summarize what new evidence you gained.  
+      • Decide what is still missing and whether to start another round (max 3).
+
+   **Never invent tool results.**
+
+## 2. Output Requirements
+Produce **one markdown document** with these exact headings:
+
+### Case Summary  
+Concise restatement of the customer’s problem.
+
+### Analysis & Findings  
+Bullet evidence from reviewed KCS, Jira, previous cases, and public sources.  
+Cite inline: *(KCS 12345)* / *(JIRA ABC‑42)* / *(CASE 987654)*.
+
+### Proposed Solution  
+Step‑by‑step fix or next action plan.  
+If uncertain, state best hypothesis and advise escalation.
+
+### Sources  
+Unordered list of **unique** URLs consulted—KCS first, then Jira, then previous cases (if publicly addressable), then public links. No duplicates.
+
+**Confidence:** *0 ‑ 1*
+
+## 3. Style Guide
+* Be concise and factual; minimal fluff.  
+* Quote exact error messages when they drive a search.  
+* Prefer bullets; avoid unnecessary tables.
+
+## 4. Hard Rules
+* No JSON output—markdown only.  
+* Never list the same link twice.  
+* Max three search rounds; if still unsatisfied, recommend escalation.
+
+# ================================================================
+#                       ⬇️  START  ⬇️
+# ================================================================
+
+Case Number: {case_number}
 '''
     return prompt.strip()
 

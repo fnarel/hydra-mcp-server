@@ -1,6 +1,6 @@
 # Red Hat API MCP Server
 
-This project implements a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that provides tools for interacting with Red Hat APIs, making it easy to integrate with LLM applications.
+This project implements a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that provides tools for interacting with [Red Hat APIs](https://developers.redhat.com/api-catalog/api/case-management), making it easy to integrate with LLM applications.
 
 ## Features
 
@@ -13,8 +13,8 @@ The server exposes the following Red Hat API tools:
 
 ## Prerequisites
 
-- Python 3.8 or higher
-- Red Hat API offline token (obtained from your Red Hat account)
+- Python 3.13 or higher
+- Red Hat API offline token (obtained from your Red Hat account, https://access.redhat.com/articles/3626371)
 
 ## Installation
 
