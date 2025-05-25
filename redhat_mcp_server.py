@@ -300,7 +300,7 @@ async def get_case(case_number: str) -> Dict:
     
     return formatted_result
 
-@mcp.prompt(name="summarize_case", description="Summarize a Red Hat support case in C.A.S.E. markdown format.")
+@mcp.prompt(name="summarize_case_prompt", description="Summarize a Red Hat support case in C.A.S.E. markdown format.")
 async def summarize_case_prompt(case_number: str) -> str:
     """
     Given a Red Hat support case number, instruct the LLM to fetch the case data and summarize it using the C.A.S.E. markdown template.
@@ -336,7 +336,7 @@ Ensure the summary is comprehensive yet concise, providing a clear overview and 
 '''
     return prompt.strip()
 
-@mcp.prompt(name="resolve_case_template", description="Red Hat Case Resolver Bot: investigation and solution workflow for a support case.")
+@mcp.prompt(name="resolve_case_prompt", description="Red Hat Case Resolver Bot: investigation and solution workflow for a support case.")
 async def resolve_case_prompt(case_number: str) -> str:
     """
     Given a Red Hat support case number, instruct the LLM to follow the Red Hat Case Resolver Bot workflow and output a markdown document with the required sections and rules.
