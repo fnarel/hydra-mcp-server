@@ -232,7 +232,7 @@ async def get_case(case_number: str) -> Dict:
     Get case details by case number.
     
     Args:
-        case_number: The case number (e.g., "04145487")
+        case_number: The case number (e.g., "01234567")
         
     Returns:
         Formatted case data with description, severity, issue, case number, and comments
