@@ -4,7 +4,7 @@
 [![MCP Compatible](https://img.shields.io/badge/MCP-compatible-green.svg)](https://modelcontextprotocol.io)
 [![UV](https://img.shields.io/badge/package%20manager-uv-blue)](https://docs.astral.sh/uv/)
 
-> Fork of [judexzhu/redhat-api-mcp](https://github.com/judexzhu/redhat-api-mcp) with additional enhancements.
+> Fork of [judexzhu/redhat-api-mcp](https://github.com/judexzhu/redhat-api-mcp) with additional calls.
 
 This project implements a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that provides tools for interacting with Red Hat APIs, making it easy to integrate with LLM applications.
 
