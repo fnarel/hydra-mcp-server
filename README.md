@@ -4,7 +4,9 @@
 [![MCP Compatible](https://img.shields.io/badge/MCP-compatible-green.svg)](https://modelcontextprotocol.io)
 [![UV](https://img.shields.io/badge/package%20manager-uv-blue)](https://docs.astral.sh/uv/)
 
-This project implements a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that provides tools for interacting with [Red Hat APIs](https://developers.redhat.com/api-catalog/api/case-management), making it easy to integrate with LLM applications.
+> Fork of [judexzhu/redhat-api-mcp](https://github.com/judexzhu/redhat-api-mcp) with additional enhancements.
+
+This project implements a [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that provides tools for interacting with Red Hat APIs, making it easy to integrate with LLM applications.
 
 ## Table of Contents
 
@@ -40,8 +42,8 @@ The server exposes the following Red Hat API tools:
 
 ### 2. Clone and Setup Project
 ```bash
-git clone <your-repository-url>
-cd redhat-api-mcp
+git clone https://github.com/fnarel/hydra-mcp-server.git
+cd hydra-mcp-server
 uv sync
 ```
 
